@@ -1,0 +1,36 @@
+{
+  "name": "bs-react-netlify-identity",
+  "version": "0.0.1",
+  "description": "Reason bindings for react-netlify-identity",
+  "keywords": [
+    "buckleScript",
+    "reason",
+    "react-netlify-identity"
+  ],
+  "homepage": "https://github.com/margaretkrutikova/bs-react-netlify-identity",
+  "repository": "https://github.com/margaretkrutikova/bs-react-netlify-identity",
+  "bugs": "https://github.com/margaretkrutikova/bs-react-netlify-identity/issues",
+  "author": "Margarita Krutikova",
+  "license": "MIT",
+  "main": "./src/ReactNetlifyIdentity.re",
+  "scripts": {
+    "build": "bsb -make-world",
+    "start": "bsb -make-world -w",
+    "clean": "bsb -clean-world",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "peerDependencies": {
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "reason-react": ">=0.7.0"
+  },
+  "devDependencies": {
+    "bs-platform": "^5.0.6",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "reason-react": ">=0.7.0"
+  },
+  "dependencies": {
+    "react-netlify-identity": "^0.1.9"
+  }
+}
