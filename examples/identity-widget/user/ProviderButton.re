@@ -126,7 +126,7 @@ let providerToString = (provider: ReactNetlifyIdentity.provider) =>
 [@react.component]
 let make = (~provider, ~className="") => {
   let classes = Styles.useStyles();
-  let identity = ReactNetlifyIdentity.useIdentityContext();
+  let identity = UserIdentity.Context.useIdentityContext();
   let handleClick = _ => identity.loginProvider(provider);
 
   <MaterialUi_Button

@@ -17,14 +17,12 @@ let make = () => {
   let (state, dispatch) = UserUtils.useReducerSafe(reducer, initState);
   let {email, password, userName, status} = state;
 
-  let identityContext = ReactNetlifyIdentity.useIdentityContext();
+  let identity = UserIdentity.Context.useIdentityContext();
 
   let handleSignup = _ => {
     dispatch(SubmitRequest);
-    let userMetaData: UserTypes.userMetaData = {
-      "user_name": Js.Nullable.fromOption(Some(userName)),
-    };
-    identityContext.signupUser(~email, ~password, ~data=userMetaData)
+    // data is of type UserIdentity.userMetaData
+    identity.signupUser(~email, ~password, ~data={userName: userName})
     |> Js.Promise.then_(_ => dispatch(SubmitSuccess) |> Js.Promise.resolve)
     |> Js.Promise.catch(error =>
          dispatch(

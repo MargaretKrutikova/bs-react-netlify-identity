@@ -1,6 +1,6 @@
 [@react.component]
 let make = () => {
-  let identity = ReactNetlifyIdentity.useIdentityContext();
+  let identity = UserIdentity.Context.useIdentityContext();
 
   let (userMenuAnchor, setUserMenuAnchor) = React.useState(() => None);
   let (showIdentityDialog, setShowIdentityDialog) =
@@ -24,16 +24,19 @@ let make = () => {
                </MaterialUi_Button>
                <UserMenu
                  anchorEl=userMenuAnchor
+                 onLogout={_ => ignore()}
                  onClose={(_, _) => setUserMenuAnchor(_ => None)}
                />
              </>
            : <>
-               <MaterialUi_Button color=`Inherit
+               <MaterialUi_Button
+                 color=`Inherit
                  onClick={_ => setShowIdentityDialog(_ => true)}>
                  {React.string("Log in")}
                </MaterialUi_Button>
                <IdentityDialog
                  open_=showIdentityDialog
+                 onLogin={_ => ignore()}
                  onClose={() => setShowIdentityDialog(_ => false)}
                />
              </>}

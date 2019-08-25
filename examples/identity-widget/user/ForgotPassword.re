@@ -35,7 +35,7 @@ let reducer = (state, action) => {
 let make = (~gotoLogin) => {
   let classes = Styles.useStyles();
   let (state, dispatch) = UserUtils.useReducerSafe(reducer, initState);
-  let identityContext = ReactNetlifyIdentity.useIdentityContext();
+  let identityContext = UserIdentity.Context.useIdentityContext();
 
   let {email, status} = state;
 
@@ -44,7 +44,9 @@ let make = (~gotoLogin) => {
     identityContext.requestPasswordRecovery(~email)
     |> Js.Promise.then_(_ => dispatch(SubmitSuccess) |> Js.Promise.resolve)
     |> Js.Promise.catch(error =>
-         dispatch(SubmitError(UserUtils.promiseErrorToJsObj(error)##message))
+         dispatch(
+           SubmitError(UserUtils.promiseErrorToJsObj(error)##message),
+         )
          |> Js.Promise.resolve
        )
     |> ignore;
@@ -62,7 +64,7 @@ let make = (~gotoLogin) => {
         label={str("Email address")}
         type_="email"
         fullWidth=true
-        value=`String(email)
+        value={`String(email)}
         required=true
         name="email"
         disabled={status === Submitting}

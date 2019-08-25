@@ -17,13 +17,13 @@ let make = (~gotoForgotPassword, ~onLogin) => {
   let classes = LoginDialogStyles.useStyles();
   let (state, dispatch) =
     UserUtils.useReducerSafe(FormData.reducer, FormData.initState);
-  let identityContext = ReactNetlifyIdentity.useIdentityContext();
+  let identity = UserIdentity.Context.useIdentityContext();
 
   let {email, password, status} = state;
 
   let handleLogin = () => {
     dispatch(SubmitRequest);
-    identityContext.loginUser(~email, ~password, ~remember=true, ())
+    identity.loginUser(~email, ~password, ~remember=true, ())
     |> Js.Promise.then_(_ => {
          dispatch(SubmitSuccess);
          onLogin() |> Js.Promise.resolve;

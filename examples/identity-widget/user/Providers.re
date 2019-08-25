@@ -19,7 +19,7 @@ let style = ReactDOMRe.Style.make;
 
 [@react.component]
 let make = () => {
-  let identity = ReactNetlifyIdentity.useIdentityContext();
+  let identity = UserIdentity.Context.useIdentityContext();
   let classes = Styles.useStyles();
 
   <>

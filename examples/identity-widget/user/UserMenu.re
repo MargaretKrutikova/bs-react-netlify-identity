@@ -10,13 +10,14 @@ let style = ReactDOMRe.Style.make;
 
 [@react.component]
 let make = (~anchorEl, ~onLogout, ~onClose) => {
-  let identity = ReactNetlifyIdentity.useIdentityContext();
+  let identity = UserIdentity.Context.useIdentityContext();
+
   let (status, setStatus) = UserUtils.useStateSafe(() => FormData.NotAsked);
 
   let userName =
     identity.user
     ->Belt.Option.flatMap(user => user.metaData)
-    ->Belt.Option.map(data => data##full_name);
+    ->Belt.Option.map(data => data.userName);
 
   let handleLogout = _ => {
     setStatus(_ => Submitting);

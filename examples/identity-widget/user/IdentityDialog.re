@@ -42,7 +42,7 @@ let str = ReasonReact.string;
 let make = (~open_, ~onLogin, ~onClose) => {
   let classes = LoginDialogStyles.useStyles();
   let (activeView, setActiveView) = React.useState(() => Login);
-  let identity = ReactNetlifyIdentity.useIdentityContext();
+  let identity = UserIdentity.Context.useIdentityContext();
 
   React.useLayoutEffect1(
     () => {
