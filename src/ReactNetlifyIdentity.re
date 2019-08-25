@@ -191,7 +191,7 @@ let useIdentityContext =
   };
 };
 
-let useNetlifyIdentitySimple = (): reactNetlifyIdentityApi(Js.t({..})) => {
+let useIdentityContextSimple = (): reactNetlifyIdentityApi(Js.t({..})) => {
   let identity =
     useIdentityContext(json => castFromJson(json), obj => castToJson(obj));
   identity;

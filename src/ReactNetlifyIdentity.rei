@@ -63,10 +63,7 @@ module IdentityContextProvider: {
     "IdentityContextProvider";
 };
 
-let useIdentityContext:
-  (Js.Json.t => 'a, 'a => Js.Json.t) => reactNetlifyIdentityApi('a);
-
-let useNetlifyIdentitySimple: unit => reactNetlifyIdentityApi(Js.t({..}));
+let useIdentityContextSimple: unit => reactNetlifyIdentityApi(Js.t({..}));
 
 module type Config = {
   type userDataJs;
