@@ -1,10 +1,8 @@
 [@react.component]
-let make = () => {
+let make = (~showIdentityDialog, ~openDialog, ~closeDialog) => {
   let identity = UserIdentity.Context.useIdentityContext();
 
   let (userMenuAnchor, setUserMenuAnchor) = React.useState(() => None);
-  let (showIdentityDialog, setShowIdentityDialog) =
-    React.useState(() => false);
 
   <MaterialUi_AppBar color=`Primary position=`Static>
     <MaterialUi_Container>
@@ -29,15 +27,13 @@ let make = () => {
                />
              </>
            : <>
-               <MaterialUi_Button
-                 color=`Inherit
-                 onClick={_ => setShowIdentityDialog(_ => true)}>
+               <MaterialUi_Button color=`Inherit onClick=openDialog>
                  {React.string("Log in")}
                </MaterialUi_Button>
                <IdentityDialog
                  open_=showIdentityDialog
                  onLogin={_ => ignore()}
-                 onClose={() => setShowIdentityDialog(_ => false)}
+                 onClose=closeDialog
                />
              </>}
       </MaterialUi_Toolbar>

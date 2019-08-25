@@ -18,7 +18,7 @@
     "start": "bsb -make-world -w",
     "clean": "bsb -clean-world",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "example:server": "webpack-dev-server"
+    "example": "webpack-dev-server"
   },
   "peerDependencies": {
     "react": "^16.9.0",
