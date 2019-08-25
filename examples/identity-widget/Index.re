@@ -1,6 +1,6 @@
 ReactDOMRe.renderToElementWithId(
   <ReactNetlifyIdentity.IdentityContextProvider
-    url="https://google.com/">
+    url="https://bs-react-netlify-identity.netlify.com/">
     <ThemeProvider> <Root /> </ThemeProvider>
   </ReactNetlifyIdentity.IdentityContextProvider>,
   "root",
