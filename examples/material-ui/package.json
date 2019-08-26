@@ -8,7 +8,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "webpack": "webpack -w",
     "webpack:production": "NODE_ENV=production webpack",
-    "server": "webpack-dev-server --port 8084"
+    "server": "webpack-dev-server",
+    "deploy:netlify": "npm run clean && npm run build && npm run webpack:production",
+    "deploy": "npm run clean && npm run build && npm run webpack:production && netlify deploy"
   },
   "keywords": [
     "BuckleScript"
