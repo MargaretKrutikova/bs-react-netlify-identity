@@ -6,8 +6,6 @@ The project is using `bs-react-netlify-identity` and experimental hooks branch o
 
 Check it out live on https://bs-react-netlify-identity.netlify.com/!
 
-## Demo
-
 ## Run Project
 
 ```sh
