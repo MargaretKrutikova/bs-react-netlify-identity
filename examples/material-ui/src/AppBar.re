@@ -14,6 +14,7 @@ let make = (~showIdentityDialog, ~openDialog, ~closeDialog) => {
         {identity.isLoggedIn
            ? <>
                <MaterialUi_Button
+                 color=`Inherit
                  onClick={e => {
                    let anchor = e->ReactEvent.Mouse.currentTarget;
                    setUserMenuAnchor(_ => Some(anchor));
