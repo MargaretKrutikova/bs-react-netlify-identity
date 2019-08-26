@@ -121,7 +121,7 @@ let userName =
   ->Belt.Option.map(m => m.userName);
 ```
 
-### Work with external provides
+### Work with external providers
 
 An external provider is exposed as variant:
 
