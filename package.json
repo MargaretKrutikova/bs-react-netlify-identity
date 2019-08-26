@@ -1,6 +1,6 @@
 {
   "name": "bs-react-netlify-identity",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Reason bindings for react-netlify-identity",
   "keywords": [
     "buckleScript",
@@ -17,28 +17,18 @@
     "build": "bsb -make-world",
     "start": "bsb -make-world -w",
     "clean": "bsb -clean-world",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "example": "webpack-dev-server",
-    "example:production": "NODE_ENV=production webpack",
-    "deploy:example": "npm run build && npm run example:production"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "peerDependencies": {
-    "react": "^16.9.0",
-    "react-dom": "^16.9.0",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
     "reason-react": ">=0.7.0"
   },
   "devDependencies": {
-    "@jsiebern/bs-material-ui": "1.1.0-hooks.8",
-    "@jsiebern/bs-material-ui-ppx": "^1.0.4",
-    "@material-ui/core": "^4.3.3",
     "bs-platform": "^5.0.6",
-    "html-webpack-plugin": "^3.2.0",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
-    "reason-react": ">=0.7.0",
-    "webpack": "^4.0.1",
-    "webpack-cli": "^3.1.1",
-    "webpack-dev-server": "^3.1.8"
+    "reason-react": ">=0.7.0"
   },
   "dependencies": {
     "react-netlify-identity": "^0.1.9"

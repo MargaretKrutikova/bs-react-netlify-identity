@@ -7,11 +7,6 @@
     {
       "dir": "src",
       "subdirs": true
-    },
-    {
-      "dir": "examples",
-      "type": "dev",
-      "subdirs": true
     }
   ],
   "package-specs": [
@@ -22,8 +17,6 @@
   ],
   "suffix": ".bs.js",
   "namespace": false,
-  "ppx-flags": ["./node_modules/@jsiebern/bs-material-ui-ppx/ppx"],
   "bs-dependencies": ["reason-react"],
-  "bs-dev-dependencies": ["@jsiebern/bs-material-ui"],
   "refmt": 3
 }

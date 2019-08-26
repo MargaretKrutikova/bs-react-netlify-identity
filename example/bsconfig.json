@@ -1,0 +1,25 @@
+{
+  "name": "react-hooks-template",
+  "reason": {
+    "react-jsx": 3
+  },
+  "sources": {
+    "dir": "src",
+    "subdirs": true
+  },
+  "package-specs": [
+    {
+      "module": "commonjs",
+      "in-source": true
+    }
+  ],
+  "suffix": ".bs.js",
+  "namespace": true,
+  "ppx-flags": ["./node_modules/@jsiebern/bs-material-ui-ppx/ppx"],
+  "bs-dependencies": [
+    "reason-react",
+    "@jsiebern/bs-material-ui",
+    "bs-react-netlify-identity"
+  ],
+  "refmt": 3
+}
