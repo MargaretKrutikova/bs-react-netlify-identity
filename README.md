@@ -2,7 +2,9 @@
 
 Reason bindings for [react-netlify-identity](https://github.com/sw-yx/react-netlify-identity) with `react` context and hooks.
 
-Includes example of a fully implemented authentication solution using netlify identity (includes login, signup, forgot password and login using external providers) wrapped in `material-ui` with hooks creating a beautiful design out of the box 😍 Ready to be dropped into any project that uses the latest experimental `bs-material-ui` with hooks, https://bs-react-netlify-identity.netlify.com/.
+Includes example of a fully implemented authentication solution using netlify identity (login, signup, forgot password and login using external providers) wrapped in `material-ui` with hooks creating a beautiful design out of the box 😍
+
+Check out demo at https://bs-react-netlify-identity.netlify.com/.
 
 ---
 
