@@ -120,3 +120,37 @@ let userName =
   // won't compile if the property doesn't exist on the metadata type
   ->Belt.Option.map(m => m.userName);
 ```
+
+### Work with external provides
+
+An external provider is exposed as variant:
+
+```reason
+type provider =
+  | Bitbucket
+  | GitHub
+  | GitLab
+  | Google;
+```
+
+and can be used to implement login with a specific provider, e.g.:
+
+```reason
+let identity = ReactNetlifyIdentity.useIdentityContextSimple();
+let handleClick = _ => identity.loginProvider(GitHub);
+```
+
+It is however more practical to get the enabled providers via the identity hook and iterate over them:
+
+```reason
+let identity = ReactNetlifyIdentity.useIdentityContextSimple();
+
+identity.settings.providers
+->Belt.Array.map(provider =>
+    <MyProviderButton
+      provider
+      key={ReactNetlifyIdentity.providerToString(provider)}
+    />
+  )
+|> React.array;
+```

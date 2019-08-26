@@ -115,18 +115,10 @@ let getProviderClass = (provider: ReactNetlifyIdentity.provider, classes) =>
   | Bitbucket => classes.providerBitbucket
   };
 
-let providerToString = (provider: ReactNetlifyIdentity.provider) =>
-  switch (provider) {
-  | Google => "Google"
-  | GitHub => "GitHub"
-  | GitLab => "GitLab"
-  | Bitbucket => "Bitbucket"
-  };
-
 [@react.component]
 let make = (~provider, ~className="") => {
   let classes = Styles.useStyles();
-  let identity = UserIdentity.Context.useIdentityContext();
+  let identity = ReactNetlifyIdentity.useIdentityContextSimple();
   let handleClick = _ => identity.loginProvider(provider);
 
   <MaterialUi_Button
@@ -134,6 +126,8 @@ let make = (~provider, ~className="") => {
     onClick=handleClick
     fullWidth=true
     classes=[Root(classes.providerButton ++ " " ++ className)]>
-    {React.string("Continue with " ++ providerToString(provider))}
+    {React.string(
+       "Continue with " ++ ReactNetlifyIdentity.providerToString(provider),
+     )}
   </MaterialUi_Button>;
 };
