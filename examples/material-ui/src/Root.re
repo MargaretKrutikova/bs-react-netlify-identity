@@ -47,15 +47,21 @@ let make = () => {
            | (_, _) => React.string("!")
            }}
         </MaterialUi_Typography>
-        <MaterialUi_Button
-          color=`Primary
-          variant=`Contained
-          onClick={_ => setShowIdentityDialog(_ => true)}>
-          {React.string(identity.isLoggedIn ? "Log out here" : "Log in here")}
-        </MaterialUi_Button>
-        <MaterialUi_Typography variant=`H4 className={classes.title}>
-          {React.string(" or use the app bar")}
-        </MaterialUi_Typography>
+        {!identity.isLoggedIn
+           ? <>
+               <MaterialUi_Button
+                 color=`Primary
+                 variant=`Contained
+                 onClick={_ => setShowIdentityDialog(_ => true)}>
+                 {React.string("Log in here")}
+               </MaterialUi_Button>
+               <MaterialUi_Typography variant=`H4 className={classes.title}>
+                 {React.string(" or use the app bar")}
+               </MaterialUi_Typography>
+             </>
+           : <MaterialUi_Typography variant=`H4 className={classes.title}>
+               {React.string("Log out using the app bar")}
+             </MaterialUi_Typography>}
       </div>
     </MaterialUi_Container>
   </>;
