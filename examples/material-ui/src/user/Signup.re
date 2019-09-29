@@ -1,19 +1,10 @@
 open FormData;
-let style = ReactDOMRe.Style.make;
-[%mui.withStyles
-  "SignupStyles"(theme =>
-    {
-      submitButtonElement: style(~marginTop=theme |> Utils.spacing(1), ()),
-      formElement: style(~marginBottom=theme |> Utils.spacing(2), ()),
-    }
-  )
-];
-
 let str = ReasonReact.string;
 
 [@react.component]
 let make = () => {
-  let classes = SignupStyles.useStyles();
+  let theme = Mui_Theme.useTheme();
+
   let (state, dispatch) = UserUtils.useReducerSafe(reducer, initState);
   let {email, password, userName, status} = state;
 
@@ -39,9 +30,9 @@ let make = () => {
       handleSignup();
     }}>
     <MaterialUi_FormControl
-      fullWidth=true classes=[Root(classes.formElement)]>
+      fullWidth=true classes=[Root(Styles.Form.formElement(theme))]>
       <MaterialUi_FormControl
-        fullWidth=true classes=[Root(classes.formElement)]>
+        fullWidth=true classes=[Root(Styles.Form.formElement(theme))]>
         <MaterialUi_TextField
           autoFocus=true
           label={str("Username")}
@@ -72,7 +63,7 @@ let make = () => {
       />
     </MaterialUi_FormControl>
     <MaterialUi_FormControl
-      fullWidth=true classes=[Root(classes.formElement)]>
+      fullWidth=true classes=[Root(Styles.Form.formElement(theme))]>
       <MaterialUi_TextField
         label={str("Password")}
         type_="password"
@@ -88,7 +79,7 @@ let make = () => {
       />
     </MaterialUi_FormControl>
     <MaterialUi_FormControl
-      fullWidth=true className={classes.submitButtonElement}>
+      fullWidth=true className={Styles.Form.submitButton(theme)}>
       <MaterialUi_Button
         color=`Primary
         disabled={status === Submitting}

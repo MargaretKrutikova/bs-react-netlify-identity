@@ -1,13 +1,4 @@
 let str = ReasonReact.string;
-let style = ReactDOMRe.Style.make;
-[%mui.withStyles
-  "Styles"(theme =>
-    {
-      submitButton: style(~marginTop=theme |> Utils.spacing(1), ()),
-      formElement: style(~marginBottom=theme |> Utils.spacing(2), ()),
-    }
-  )
-];
 
 type state = {
   email: string,
@@ -33,7 +24,8 @@ let reducer = (state, action) => {
 
 [@react.component]
 let make = (~gotoLogin) => {
-  let classes = Styles.useStyles();
+  let theme = Mui_Theme.useTheme();
+
   let (state, dispatch) = UserUtils.useReducerSafe(reducer, initState);
   let identityContext = UserIdentity.Context.useIdentityContext();
 
@@ -58,7 +50,7 @@ let make = (~gotoLogin) => {
       handleRecoverPassword();
     }}>
     <MaterialUi_FormControl
-      fullWidth=true classes=[Root(classes.formElement)]>
+      fullWidth=true classes=[Root(Styles.Form.formElement(theme))]>
       <MaterialUi_TextField
         autoFocus=true
         label={str("Email address")}
@@ -76,8 +68,8 @@ let make = (~gotoLogin) => {
     </MaterialUi_FormControl>
     <MaterialUi_FormControl
       fullWidth=true
-      className={classes.submitButton}
-      classes=[Root(classes.formElement)]>
+      className={Styles.Form.submitButton(theme)}
+      classes=[Root(Styles.Form.formElement(theme))]>
       <MaterialUi_Button
         color=`Primary
         disabled={status === Submitting}

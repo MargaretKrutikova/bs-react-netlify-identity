@@ -10,7 +10,9 @@
     "webpack:production": "NODE_ENV=production webpack",
     "server": "webpack-dev-server",
     "deploy:netlify": "npm run clean && npm run build && npm run webpack:production",
-    "deploy": "npm run clean && npm run build && npm run webpack:production && netlify deploy"
+    "deploy": "npm run clean && npm run build && npm run webpack:production && netlify deploy",
+    "dedupe:react": "npm dedupe reason-react --no-package-lock",
+    "update-deps": "rm -rf node_modules/bs-react-netlify-identity && yarn install --check-files && npm run dedupe:react"
   },
   "keywords": [
     "BuckleScript"
@@ -18,17 +20,19 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "@jsiebern/bs-material-ui": "1.1.0-hooks.8",
+    "@material-ui/core": "^4.3.3",
+    "bs-css": "^10.0.1",
+    "bs-react-netlify-identity": "^1.0.3",
     "react": "^16.8.1",
     "react-dom": "^16.8.1",
-    "reason-react": ">=0.7.0",
-    "bs-react-netlify-identity": "^1.0.3",
-    "@jsiebern/bs-material-ui": "1.1.0-hooks.8",
-    "@material-ui/core": "^4.3.3"
+    "reason-react": ">=0.7.0"
   },
   "devDependencies": {
-    "@jsiebern/bs-material-ui-ppx": "^1.0.4",
+    "css-loader": "^3.2.0",
     "bs-platform": "^5.0.6",
     "html-webpack-plugin": "^3.2.0",
+    "style-loader": "^1.0.0",
     "webpack": "^4.0.1",
     "webpack-cli": "^3.1.1",
     "webpack-dev-server": "^3.1.8"

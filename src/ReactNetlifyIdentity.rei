@@ -12,7 +12,13 @@ type settings = {
   providers: array(provider),
 };
 
+type appMetaData = {
+  provider: string,
+  roles: option(array(string)),
+};
+
 type user('a) = {
+  appMetaData: option(appMetaData),
   metaData: option('a),
   id: string,
   email: string,

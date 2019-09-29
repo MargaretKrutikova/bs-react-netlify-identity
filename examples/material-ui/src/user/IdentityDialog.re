@@ -1,35 +1,6 @@
-let style = ReactDOMRe.Style.make;
-let addUnsafe = ReactDOMRe.Style.unsafeAddProp;
-let combine = ReactDOMRe.Style.combine;
+[%bs.raw {|require('./provider.css')|}];
 
-[%mui.withStyles
-  "LoginDialogStyles"(theme =>
-    {
-      root:
-        style(
-          ~width="90vw",
-          ~margin="10vh auto",
-          ~maxWidth="400px!important",
-          ~padding=theme |> Utils.spacing(2),
-          (),
-        )
-        ->MaterialUi.ThemeHelpers.addBreakpoint(
-            ~theme,
-            ~breakpoint=`MD,
-            ~style=style(~width="50vw", ()),
-          ),
-      dialogContent:
-        style()
-        ->addUnsafe(
-            "&:first-child",
-            style(~paddingTop=theme |> Utils.spacing(1), ())
-            ->Utils.styleToString,
-          ),
-      title: style(~paddingLeft="0", ()),
-      tabRoot: style(~marginBottom=theme |> Utils.spacing(2), ()),
-    }
-  )
-];
+let style = ReactDOMRe.Style.make;
 
 type activeView =
   | Login
@@ -40,7 +11,8 @@ let str = ReasonReact.string;
 
 [@react.component]
 let make = (~open_, ~onLogin, ~onClose) => {
-  let classes = LoginDialogStyles.useStyles();
+  let theme = Mui_Theme.useTheme();
+
   let (activeView, setActiveView) = React.useState(() => Login);
   let identity = UserIdentity.Context.useIdentityContext();
 
@@ -60,12 +32,12 @@ let make = (~open_, ~onLogin, ~onClose) => {
     open_
     onClose={(_, _) => onClose()}
     scroll=`Body
-    classes=[PaperScrollBody(classes.root)]>
-    <MaterialUi_DialogContent className={classes.dialogContent}>
+    classes=[PaperScrollBody(Styles.Dialog.root(theme))]>
+    <MaterialUi_DialogContent className=Styles.Dialog.dialogContent>
       {switch (activeView) {
        | ForgotPassword =>
          <>
-           <MaterialUi_DialogTitle className={classes.title}>
+           <MaterialUi_DialogTitle className=Styles.Dialog.title>
              {str("Recover password")}
            </MaterialUi_DialogTitle>
            <ForgotPassword gotoLogin={_ => setActiveView(_ => Login)} />
@@ -76,7 +48,7 @@ let make = (~open_, ~onLogin, ~onClose) => {
              value=activeView
              indicatorColor=`Primary
              textColor=`Primary
-             classes=[Root(classes.tabRoot)]
+             classes=[Root(Styles.Dialog.tabRoot(theme))]
              variant=`FullWidth>
              <MaterialUi_Tab
                onClick={_ => setActiveView(_ => Login)}

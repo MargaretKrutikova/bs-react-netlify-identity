@@ -1,7 +1,9 @@
 ReactDOMRe.renderToElementWithId(
   <ReactNetlifyIdentity.IdentityContextProvider
     url="https://bs-react-netlify-identity.netlify.com/">
-    <ThemeProvider> <Root /> </ThemeProvider>
+    <ThemeProvider>
+      <Jss.JssProvider> <Root /> </Jss.JssProvider>
+    </ThemeProvider>
   </ReactNetlifyIdentity.IdentityContextProvider>,
   "root",
 );
