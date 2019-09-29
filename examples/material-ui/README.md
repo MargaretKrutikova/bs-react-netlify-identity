@@ -9,7 +9,7 @@ Check it out live on https://bs-react-netlify-identity.netlify.com/!
 ## Run Project
 
 ```sh
-npm install
+yarn
 npm start
 # in another tab
 npm run server

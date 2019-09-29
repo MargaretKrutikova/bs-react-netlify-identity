@@ -154,3 +154,10 @@ identity.settings.providers
   )
 |> React.array;
 ```
+
+## Running locally
+
+```sh
+yarn
+npm start
+```
