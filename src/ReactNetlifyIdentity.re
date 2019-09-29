@@ -62,8 +62,20 @@ let fromSettingsJs = settings => {
   };
 };
 
+type appMetaDataJs = {
+  .
+  "provider": string,
+  "roles": Js.Nullable.t(array(string)),
+};
+
+type appMetaData = {
+  provider: string, // TOOD: use provider variant
+  roles: option(array(string)),
+};
+
 type userJs = {
   .
+  "app_metadata": Js.Nullable.t(appMetaDataJs),
   "user_metadata": Js.Nullable.t(Js.Json.t),
   "id": string,
   "email": string,
@@ -71,6 +83,7 @@ type userJs = {
 };
 
 type user('a) = {
+  appMetaData: option(appMetaData),
   metaData: option('a),
   id: string,
   email: string,
@@ -81,6 +94,12 @@ let fromUserJs = (user: userJs, convertMetaDataFromJs) => {
   id: user##id,
   email: user##email,
   role: user##role,
+  appMetaData:
+    user##app_metadata
+    ->Js.Nullable.toOption
+    ->Belt.Option.map(data =>
+        {provider: data##provider, roles: data##roles->Js.Nullable.toOption}
+      ),
   metaData:
     user##user_metadata
     ->Js.Nullable.toOption
