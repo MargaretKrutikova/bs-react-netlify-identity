@@ -1,20 +1,10 @@
 open FormData;
-
-let style = ReactDOMRe.Style.make;
-[%mui.withStyles
-  "LoginDialogStyles"(theme =>
-    {
-      loginButton: style(~marginTop=theme |> Utils.spacing(1), ()),
-      formElement: style(~marginBottom=theme |> Utils.spacing(2), ()),
-    }
-  )
-];
-
 let str = ReasonReact.string;
 
 [@react.component]
 let make = (~gotoForgotPassword, ~onLogin) => {
-  let classes = LoginDialogStyles.useStyles();
+  let theme = Mui_Theme.useTheme();
+
   let (state, dispatch) =
     UserUtils.useReducerSafe(FormData.reducer, FormData.initState);
   let identity = UserIdentity.Context.useIdentityContext();
@@ -43,7 +33,7 @@ let make = (~gotoForgotPassword, ~onLogin) => {
       handleLogin();
     }}>
     <MaterialUi_FormControl
-      fullWidth=true classes=[Root(classes.formElement)]>
+      fullWidth=true classes=[Root(Styles.Form.formElement(theme))]>
       <MaterialUi_TextField
         autoFocus=true
         label={str("Email Address")}
@@ -60,7 +50,7 @@ let make = (~gotoForgotPassword, ~onLogin) => {
       />
     </MaterialUi_FormControl>
     <MaterialUi_FormControl
-      fullWidth=true classes=[Root(classes.formElement)]>
+      fullWidth=true classes=[Root(Styles.Form.formElement(theme))]>
       <MaterialUi_TextField
         label={str("Password")}
         type_="password"
@@ -77,8 +67,8 @@ let make = (~gotoForgotPassword, ~onLogin) => {
     </MaterialUi_FormControl>
     <MaterialUi_FormControl
       fullWidth=true
-      className={classes.loginButton}
-      classes=[Root(classes.formElement)]>
+      className={Styles.Form.submitButton(theme)}
+      classes=[Root(Styles.Form.formElement(theme))]>
       <MaterialUi_Button
         color=`Primary
         disabled={status === Submitting}

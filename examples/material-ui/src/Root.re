@@ -1,32 +1,28 @@
-let style = ReactDOMRe.Style.make;
-[%mui.withStyles
-  "RootStyles"(theme =>
-    {
-      title:
-        style(
-          ~marginTop=theme |> Utils.spacing(3),
-          ~marginBottom=theme |> Utils.spacing(3),
-          (),
-        ),
-      wrapper:
-        style(
-          ~display="flex",
-          ~alignItems="center",
-          ~flexDirection="column",
-          ~margin="0 auto",
-          (),
-        ),
-    }
-  )
-];
+module Styles = {
+  open Css;
+  let title = theme =>
+    style([
+      marginTop(px(theme |> Utils.spacingPx(3))),
+      marginBottom(px(theme |> Utils.spacingPx(3))),
+    ]);
+
+  let wrapper =
+    style([
+      display(`flex),
+      flexDirection(column),
+      alignItems(`center),
+      margin2(~h=auto, ~v=px(0)),
+    ]);
+};
 
 [@react.component]
 let make = () => {
+  let theme = Mui_Theme.useTheme();
+
   let identity = UserIdentity.Context.useIdentityContext();
   let (showIdentityDialog, setShowIdentityDialog) =
     React.useState(() => false);
 
-  let classes = RootStyles.useStyles();
   <>
     <MaterialUi_CssBaseline />
     <AppBar
@@ -35,8 +31,8 @@ let make = () => {
       closeDialog={_ => setShowIdentityDialog(_ => false)}
     />
     <MaterialUi_Container>
-      <div className={classes.wrapper}>
-        <MaterialUi_Typography variant=`H2 className={classes.title}>
+      <div className=Styles.wrapper>
+        <MaterialUi_Typography variant=`H2 className={Styles.title(theme)}>
           {React.string("Welcome")}
           {switch (
              identity.isLoggedIn,
@@ -55,11 +51,13 @@ let make = () => {
                  onClick={_ => setShowIdentityDialog(_ => true)}>
                  {React.string("Log in here")}
                </MaterialUi_Button>
-               <MaterialUi_Typography variant=`H4 className={classes.title}>
+               <MaterialUi_Typography
+                 variant=`H4 className={Styles.title(theme)}>
                  {React.string(" or use the app bar")}
                </MaterialUi_Typography>
              </>
-           : <MaterialUi_Typography variant=`H4 className={classes.title}>
+           : <MaterialUi_Typography
+               variant=`H4 className={Styles.title(theme)}>
                {React.string("Log out using the app bar")}
              </MaterialUi_Typography>}
       </div>
