@@ -69,7 +69,7 @@ type appMetaDataJs = {
 };
 
 type appMetaData = {
-  provider: string, // TOOD: use provider variant
+  provider: string,
   roles: option(array(string)),
 };
 
