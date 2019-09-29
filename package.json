@@ -1,6 +1,6 @@
 {
   "name": "bs-react-netlify-identity",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Reason bindings for react-netlify-identity",
   "keywords": [
     "buckleScript",
