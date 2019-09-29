@@ -121,6 +121,28 @@ let userName =
   ->Belt.Option.map(m => m.userName);
 ```
 
+### Work with roles
+
+Netlify allows you to configure roles and assign them to your users either manually via the interface, or using a lambda function (see [how to set roles in Netlify Identity](https://www.netlify.com/blog/2019/02/21/the-role-of-roles-and-how-to-set-them-in-netlify-identity/)).
+
+Roles are then stored in app metadata on the `user` object. Here is an example of how to access roles from a reason component:
+
+```reason
+let identity = UserIdentity.Context.useIdentityContext();
+
+let roles =
+  identity.user
+  ->Belt.Option.flatMap(u => u.appMetaData)
+  ->Belt.Option.flatMap(m => m.roles);
+
+let isAdmin =
+  switch (roles) {
+  | Some(roles) =>
+    roles->Belt.Array.keep(r => r == "admin")->Belt.Array.length > 0
+  | _ => false
+  };
+```
+
 ### Work with external providers
 
 An external provider is exposed as variant:
