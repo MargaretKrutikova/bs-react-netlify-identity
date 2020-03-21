@@ -29,7 +29,7 @@ type reactNetlifyIdentityApiJs = {
   logoutUser: unit => maybeUserPromiseJs,
   requestPasswordRecovery: string => Js.Promise.t(unit),
   recoverAccount: Js.Nullable.t(bool) => maybeUserPromiseJs,
-  updateUser: {. "data": Js.Json.t} => maybeUserPromiseJs,
+  updateUser: Js.Json.t => maybeUserPromiseJs,
   getFreshJWT: unit => Js.Promise.t(string),
   _url: string,
   loginProvider: string => unit,
@@ -92,8 +92,7 @@ let useIdentityContext =
       identity.recoverAccount(Js.Nullable.fromOption(remember))
       |> toMaybeUserPromise(convertFromJs),
     updateUser: data =>
-      identity.updateUser({"data": data})
-      |> toMaybeUserPromise(convertFromJs),
+      identity.updateUser(data) |> toMaybeUserPromise(convertFromJs),
     getFreshJWT: () => identity.getFreshJWT(),
     url: identity._url,
     loginProvider: provider =>

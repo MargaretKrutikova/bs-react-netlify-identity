@@ -66,7 +66,7 @@ let make = (~open_, ~onClose) => {
         </MaterialUi_FormControl>
         {switch (status) {
          | Error(message) => <ErrorMessage message />
-         | Success => str("Password updated. Please log in.")
+         | Success => str("Password has been updated.")
          | _ => React.null
          }}
       </form>
