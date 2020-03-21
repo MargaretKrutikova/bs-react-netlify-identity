@@ -66,6 +66,7 @@ let make = (~open_, ~onClose) => {
         </MaterialUi_FormControl>
         {switch (status) {
          | Error(message) => <ErrorMessage message />
+         | Success => str("Message sent.")
          | _ => React.null
          }}
       </form>

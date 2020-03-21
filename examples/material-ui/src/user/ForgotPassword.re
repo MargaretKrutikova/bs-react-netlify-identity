@@ -81,6 +81,7 @@ let make = (~gotoLogin) => {
     </MaterialUi_FormControl>
     {switch (status) {
      | Error(message) => <ErrorMessage message />
+     | Success => str("Message sent.")
      | _ => React.null
      }}
     <UserLink onClick=gotoLogin> {str("Back to login")} </UserLink>
