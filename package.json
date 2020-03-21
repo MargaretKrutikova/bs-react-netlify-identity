@@ -25,12 +25,12 @@
     "reason-react": ">=0.7.0"
   },
   "devDependencies": {
-    "bs-platform": "^5.0.6",
+    "bs-platform": "^7.2.2",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "reason-react": ">=0.7.0"
   },
   "dependencies": {
-    "react-netlify-identity": "^0.1.9"
+    "react-netlify-identity": "^0.2.3"
   }
 }
