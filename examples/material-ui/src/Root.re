@@ -23,7 +23,7 @@ let make = () => {
   let (showIdentityDialog, setShowIdentityDialog) =
     React.useState(() => false);
   let (showRecoveryDialog, setShowRecoveryDialog) =
-    React.useState(() => true);
+    React.useState(() => false);
 
   // Handle recovery token.
   switch (identity.param.token, identity.param.type_) {
