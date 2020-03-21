@@ -1,5 +1,5 @@
 [@react.component]
-let make = (~showIdentityDialog, ~openDialog, ~closeDialog) => {
+let make = (~openDialog) => {
   let identity = UserIdentity.Context.useIdentityContext();
 
   let (userMenuAnchor, setUserMenuAnchor) = React.useState(() => None);
@@ -27,16 +27,9 @@ let make = (~showIdentityDialog, ~openDialog, ~closeDialog) => {
                  onClose={(_, _) => setUserMenuAnchor(_ => None)}
                />
              </>
-           : <>
-               <MaterialUi_Button color=`Inherit onClick=openDialog>
-                 {React.string("Log in")}
-               </MaterialUi_Button>
-               <IdentityDialog
-                 open_=showIdentityDialog
-                 onLogin={_ => ignore()}
-                 onClose=closeDialog
-               />
-             </>}
+           : <MaterialUi_Button color=`Inherit onClick=openDialog>
+               {React.string("Log in")}
+             </MaterialUi_Button>}
       </MaterialUi_Toolbar>
     </MaterialUi_Container>
   </MaterialUi_AppBar>;

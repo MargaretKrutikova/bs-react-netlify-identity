@@ -1,5 +1,15 @@
 external promiseErrorToJsObj: Js.Promise.error => Js.t('a) = "%identity";
 
+let errorToMessage = (error: Js.Promise.error) =>
+  (
+    switch (promiseErrorToJsObj(error)##message->Js.Nullable.toOption) {
+    | None => error
+    | Some(message) => message
+    }
+  )
+  ->Js.Json.stringifyAny
+  ->Belt.Option.getWithDefault("");
+
 let useReducerSafe = (reducer, initState) => {
   let (state, dispatch) = React.useReducer(reducer, initState);
   let mounted = React.useRef(false);
