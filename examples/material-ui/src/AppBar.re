@@ -1,8 +1,11 @@
+external toDomElement: 'a => Dom.element = "%identity";
+
 [@react.component]
 let make = (~openDialog) => {
   let identity = UserIdentity.Context.useIdentityContext();
 
   let (userMenuAnchor, setUserMenuAnchor) = React.useState(() => None);
+  let clearAnchor = () => setUserMenuAnchor(_ => None);
 
   <MaterialUi_AppBar color=`Primary position=`Static>
     <MaterialUi_Container>
@@ -16,16 +19,20 @@ let make = (~openDialog) => {
                <MaterialUi_Button
                  color=`Inherit
                  onClick={e => {
-                   let anchor = e->ReactEvent.Mouse.currentTarget;
+                   let anchor = e->ReactEvent.Mouse.target->toDomElement;
                    setUserMenuAnchor(_ => Some(anchor));
                  }}>
                  {React.string("My Account")}
                </MaterialUi_Button>
-               <UserMenu
-                 anchorEl=userMenuAnchor
-                 onLogout={_ => ignore()}
-                 onClose={(_, _) => setUserMenuAnchor(_ => None)}
-               />
+               {switch (userMenuAnchor) {
+                | Some(_) =>
+                  <UserMenu
+                    anchorEl=userMenuAnchor
+                    onLogout=clearAnchor
+                    onClose={(_, _) => clearAnchor()}
+                  />
+                | None => React.null
+                }}
              </>
            : <MaterialUi_Button color=`Inherit onClick=openDialog>
                {React.string("Log in")}
