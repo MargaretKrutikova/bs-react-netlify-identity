@@ -2235,9 +2235,10 @@ bs-platform@~7.0.1:
   resolved "https://registry.yarnpkg.com/bs-platform/-/bs-platform-7.0.1.tgz#1d7b0ef6088b998dceee5db74a7cd8f01c20a3bd"
   integrity sha512-UjStdtHhbtC/l6vKJ1XRDqrPk7rFf5PLYHtRX3akDXEYVnTbN36z0g4DEr5mU8S0N945e33HYts9x+i7hKKpZQ==
 
-"bs-react-netlify-identity@git://github.com/MargaretKrutikova/bs-react-netlify-identity.git#update-deps":
-  version "1.0.4"
-  resolved "git://github.com/MargaretKrutikova/bs-react-netlify-identity.git#b757b4bfde2579f288a64d91c7cd6fed05c3e18a"
+bs-react-netlify-identity@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/bs-react-netlify-identity/-/bs-react-netlify-identity-2.0.0.tgz#f1d4349b4c51aef1fbbae2519d57dc424f08065e"
+  integrity sha512-mi6MoJ9lPe7eB6j1GMqqwHGAgNtOLiPKUYb7YyuTX0IKf4ROQcalpYM2MjowAlvA2W7/uCYu6WXfD4hnHC6+9A==
   dependencies:
     react-netlify-identity "^0.2.3"
 
