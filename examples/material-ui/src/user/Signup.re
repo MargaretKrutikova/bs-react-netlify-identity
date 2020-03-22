@@ -31,23 +31,23 @@ let make = () => {
     }}>
     <MaterialUi_FormControl
       fullWidth=true classes=[Root(Styles.Form.formElement(theme))]>
-      <MaterialUi_FormControl
-        fullWidth=true classes=[Root(Styles.Form.formElement(theme))]>
-        <MaterialUi_TextField
-          autoFocus=true
-          label={str("Username")}
-          name="name"
-          type_="text"
-          fullWidth=true
-          required=true
-          value={`String(userName)}
-          disabled={status === Submitting}
-          onChange={e => {
-            let value = Utils.getInputValue(e);
-            dispatch(SetUserName(value));
-          }}
-        />
-      </MaterialUi_FormControl>
+      <MaterialUi_TextField
+        autoFocus=true
+        label={str("Username")}
+        name="name"
+        type_="text"
+        fullWidth=true
+        required=true
+        value={`String(userName)}
+        disabled={status === Submitting}
+        onChange={e => {
+          let value = Utils.getInputValue(e);
+          dispatch(SetUserName(value));
+        }}
+      />
+    </MaterialUi_FormControl>
+    <MaterialUi_FormControl
+      fullWidth=true classes=[Root(Styles.Form.formElement(theme))]>
       <MaterialUi_TextField
         label={str("Email Address")}
         type_="email"

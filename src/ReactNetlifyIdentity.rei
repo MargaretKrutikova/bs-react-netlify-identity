@@ -1,49 +1,29 @@
-type provider =
-  | Bitbucket
-  | GitHub
-  | GitLab
-  | Google;
+type provider = NetlifyProvider.t;
+let providerToString: NetlifyProvider.t => string;
 
-let providerToString: provider => string;
-
-type settings = {
-  autoconfirm: bool,
-  disableSignup: bool,
-  providers: array(provider),
-};
-
-type appMetaData = {
-  provider: string,
-  roles: option(array(string)),
-};
-
-type user('a) = {
-  appMetaData: option(appMetaData),
-  metaData: option('a),
-  id: string,
-  email: string,
-  role: string,
-};
+type maybeUserPromise('a) = Js.Promise.t(option(NetlifyUser.t('a)));
+type settings = NetlifySettings.t;
+type user('a) = NetlifyUser.t('a);
 
 type reactNetlifyIdentityApi('a) = {
-  user: option(user('a)),
+  user: option(NetlifyUser.t('a)),
+  isConfirmedUser: bool,
   isLoggedIn: bool,
   signupUser:
-    (~email: string, ~password: string, ~data: 'a) =>
-    Js.Promise.t(option(user('a))),
+    (~email: string, ~password: string, ~data: 'a) => maybeUserPromise('a),
   loginUser:
     (~email: string, ~password: string, ~remember: bool=?, unit) =>
-    Js.Promise.t(option(user('a))),
-  logoutUser: unit => Js.Promise.t(option(user('a))),
+    maybeUserPromise('a),
+  logoutUser: unit => maybeUserPromise('a),
   requestPasswordRecovery: (~email: string) => Js.Promise.t(unit),
-  recoverAccount:
-    (~token: string, ~remember: bool=?, unit) => Js.Promise.t(user('a)),
-  updateUser: Js.Json.t => Js.Promise.t(option(user('a))),
+  recoverAccount: (~remember: bool=?, unit) => maybeUserPromise('a),
+  updateUser: Js.Json.t => maybeUserPromise('a),
   getFreshJWT: unit => Js.Promise.t(string),
   url: string,
-  loginProvider: provider => unit,
-  acceptInviteExternalUrl: (~provider: provider, ~token: string) => string,
-  settings,
+  loginProvider: NetlifyProvider.t => unit,
+  acceptInviteExternalUrl: (~token: string) => string,
+  settings: NetlifySettings.t,
+  param: NetlifyToken.t,
 };
 
 module IdentityContextProvider: {

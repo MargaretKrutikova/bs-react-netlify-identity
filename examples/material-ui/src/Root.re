@@ -22,14 +22,21 @@ let make = () => {
   let identity = UserIdentity.Context.useIdentityContext();
   let (showIdentityDialog, setShowIdentityDialog) =
     React.useState(() => false);
+  let (showRecoveryDialog, setShowRecoveryDialog) =
+    React.useState(() => false);
+
+  // Handle recovery token.
+  switch (identity.param.token, identity.param.type_) {
+  | (Some(_), NetlifyToken.Recovery) =>
+    identity.recoverAccount(~remember=false, ())
+    |> Js.Promise.(then_(_ => setShowRecoveryDialog(_ => true) |> resolve))
+    |> ignore
+  | _ => ignore()
+  };
 
   <>
     <MaterialUi_CssBaseline />
-    <AppBar
-      showIdentityDialog
-      openDialog={_ => setShowIdentityDialog(_ => true)}
-      closeDialog={_ => setShowIdentityDialog(_ => false)}
-    />
+    <AppBar openDialog={_ => setShowIdentityDialog(_ => true)} />
     <MaterialUi_Container>
       <div className=Styles.wrapper>
         <MaterialUi_Typography variant=`H2 className={Styles.title(theme)}>
@@ -61,6 +68,15 @@ let make = () => {
                {React.string("Log out using the app bar")}
              </MaterialUi_Typography>}
       </div>
+      <IdentityDialog
+        open_=showIdentityDialog
+        onLogin={_ => ignore()}
+        onClose={_ => setShowIdentityDialog(_ => false)}
+      />
+      <RecoveryDialog
+        open_=showRecoveryDialog
+        onClose={_ => setShowRecoveryDialog(_ => false)}
+      />
     </MaterialUi_Container>
   </>;
 };

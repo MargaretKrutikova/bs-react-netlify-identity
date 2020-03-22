@@ -1,3 +1,5 @@
+external toJson: 'a => Js.Json.t = "%identity";
+
 /** material ui */
 let spacingPx = (ind, theme) =>
   theme->MaterialUi.Theme.Theme.spacingGet(ind);
