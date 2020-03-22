@@ -34,6 +34,8 @@ let make = () => {
   | _ => ignore()
   };
 
+  let closeIdentityDialog = _ => setShowIdentityDialog(_ => false);
+
   <>
     <MaterialUi_CssBaseline />
     <AppBar openDialog={_ => setShowIdentityDialog(_ => true)} />
@@ -70,8 +72,8 @@ let make = () => {
       </div>
       <IdentityDialog
         open_=showIdentityDialog
-        onLogin={_ => ignore()}
-        onClose={_ => setShowIdentityDialog(_ => false)}
+        onLogin=closeIdentityDialog
+        onClose=closeIdentityDialog
       />
       <RecoveryDialog
         open_=showRecoveryDialog
