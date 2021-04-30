@@ -2235,10 +2235,10 @@ bs-platform@~7.0.1:
   resolved "https://registry.yarnpkg.com/bs-platform/-/bs-platform-7.0.1.tgz#1d7b0ef6088b998dceee5db74a7cd8f01c20a3bd"
   integrity sha512-UjStdtHhbtC/l6vKJ1XRDqrPk7rFf5PLYHtRX3akDXEYVnTbN36z0g4DEr5mU8S0N945e33HYts9x+i7hKKpZQ==
 
-bs-react-netlify-identity@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/bs-react-netlify-identity/-/bs-react-netlify-identity-2.0.0.tgz#f1d4349b4c51aef1fbbae2519d57dc424f08065e"
-  integrity sha512-mi6MoJ9lPe7eB6j1GMqqwHGAgNtOLiPKUYb7YyuTX0IKf4ROQcalpYM2MjowAlvA2W7/uCYu6WXfD4hnHC6+9A==
+bs-react-netlify-identity@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/bs-react-netlify-identity/-/bs-react-netlify-identity-2.0.3.tgz#6a6ebff008f2577e46112363d6813cb2408e4817"
+  integrity sha512-mmIFFlOLUwPgjHZuaF+TM3CrtxfebbejuJ/Jx3uknWABtTOr9eIBtlIjWoCMi2zvvioWw5OfnzcrMM/sh2LOKQ==
   dependencies:
     react-netlify-identity "^0.2.3"
 
@@ -3903,9 +3903,9 @@ fb-watchman@^2.0.0:
     bser "^2.0.0"
 
 figgy-pudding@^3.5.1:
-  version "3.5.1"
-  resolved "https://registry.yarnpkg.com/figgy-pudding/-/figgy-pudding-3.5.1.tgz#862470112901c727a0e495a80744bd5baa1d6790"
-  integrity sha512-vNKxJHTEKNThjfrdJwHc7brvM6eVevuO5nTj6ez8ZQ1qbXTvGthucRF7S4vf2cr71QVnT70V34v0S1DyQsti0w==
+  version "3.5.2"
+  resolved "https://registry.yarnpkg.com/figgy-pudding/-/figgy-pudding-3.5.2.tgz#b4eee8148abb01dcf1d1ac34367d59e12fa61d6e"
+  integrity sha512-0btnI/H8f2pavGMN8w40mlSKOfTK2SVJmBfBeVIj3kNw0swwgzyRq0d5TJVOwodFmtvpPeWPN/MCcfuWF0Ezbw==
 
 figures@^3.0.0:
   version "3.2.0"
@@ -8211,9 +8211,9 @@ sshpk@^1.7.0:
     tweetnacl "~0.14.0"
 
 ssri@^6.0.1:
-  version "6.0.1"
-  resolved "https://registry.yarnpkg.com/ssri/-/ssri-6.0.1.tgz#2a3c41b28dd45b62b63676ecb74001265ae9edd8"
-  integrity sha512-3Wge10hNcT1Kur4PDFwEieXSCMCJs/7WvSACcrMYrNp+b8kDL1/0wJch5Ni2WrtwEa2IO8OsVfeKIciKCDx/QA==
+  version "6.0.2"
+  resolved "https://registry.yarnpkg.com/ssri/-/ssri-6.0.2.tgz#157939134f20464e7301ddba3e90ffa8f7728ac5"
+  integrity sha512-cepbSq/neFK7xB6A50KHN0xHDotYzq58wWCa5LeWqnPrHG8GzfEjO/4O8kpmcGW+oaxkvhEJCWgbgNk4/ZV93Q==
   dependencies:
     figgy-pudding "^3.5.1"
 
